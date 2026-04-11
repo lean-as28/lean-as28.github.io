@@ -1,36 +1,67 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
+<html lang="zh-TW" class="scroll-smooth"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>阿斯莫德 | Lean_28</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+<body class="bg-gray-900 text-white font-sans">
 
-    <div class="max-w-md w-full p-8 bg-gray-800 rounded-2xl shadow-2xl text-center border border-gray-700">
-        <div class="w-24 h-24 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold">
-            A
-        </div>
-        
-        <h1 class="text-3xl font-bold mb-2">阿斯莫德</h1>
-        <p class="text-gray-400 mb-6">@lean_28 | 內容創作者</p>
-        
-        <div class="space-y-4">
-            <a href="https://x.com/lean_28" target="_blank" 
-               class="block w-full py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition">
-               追蹤我的 Twitter (X)
-            </a>
+    <section class="flex items-center justify-center min-h-screen">
+        <div class="max-w-md w-full p-8 bg-gray-800 rounded-2xl shadow-2xl text-center border border-gray-700 mx-4">
+            <div class="w-24 h-24 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold">
+                A
+            </div>
+            <h1 class="text-3xl font-bold mb-2">阿斯莫德</h1>
+            <p class="text-gray-400 mb-6">@lean_28 | 內容創作者</p>
             
-            <a href="#" class="block w-full py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition">
-               關於我
-            </a>
+            <div class="space-y-4">
+                <a href="https://x.com/lean_28" target="_blank" 
+                   class="block w-full py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition">
+                   追蹤我的 Twitter (X)
+                </a>
+                <a href="#about" class="block w-full py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition">
+                   關於我
+                </a>
+            </div>
         </div>
-        
-        <footer class="mt-8 text-sm text-gray-500">
-            © 2026 Asmodeus. Powered by GitHub Pages.
-        </footer>
-    </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-900 flex justify-center">
+        <div class="max-w-2xl w-full px-6">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 pb-2 inline-block">關於我 / About Me</h2>
+            
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 leading-loose text-gray-300">
+                <p class="mb-4">
+                    你好！我是 <span class="text-white font-bold">阿斯莫德 (Lean_28)</span>。
+                </p>
+                <p class="mb-4">
+                    我是一位活躍於 Twitter 的瑟瑟內容創作者。這裡是我手寫程式架設的個人小天地，
+                    未來我會在這裡分享更多關於我的創作歷程、生活點滴或是各種有趣的主題。
+                </p>
+                <p class="mb-4">
+                    我熱衷於與粉絲互動，如果你喜歡我的內容，歡迎透過IG、TG與我交流！
+                </p>
+                
+                <div class="mt-8 pt-6 border-t border-gray-700">
+                    <h3 class="text-white font-semibold mb-4">我的技能 / 興趣</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm">18+內容創作</span>
+                        <span class="bg-green-900/50 text-green-300 px-3 py-1 rounded-full text-sm">程式初學者</span>
+                        <span class="bg-purple-900/50 text-purple-300 px-3 py-1 rounded-full text-sm">社群經營</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="text-gray-500 hover:text-white transition">↑ 返回頂部</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-sm text-gray-600">
+        © 2026 Asmodeus. Powered by GitHub Pages.
+    </footer>
 
 </body>
 </html>
