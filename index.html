@@ -154,39 +154,56 @@
                 </p>
             </div>
 
-            <div class="space-y-8">
-                
-                <div class="relative">
-                    <div class="flex justify-between mb-2 items-center">
-                        <span class="text-white font-bold">第一順位：開嘴頭套</span>
-                        <span class="text-green-400 font-bold bg-green-900/30 px-3 py-1 rounded-full text-sm italic">已達成 Mission Accomplished</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
-                        <div class="bg-green-500 h-full w-[100%] shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                    </div>
-                </div>
+           <section id="funding" class="py-20 bg-gray-900 flex justify-center">
+    <div class="max-w-2xl w-full px-6">
+        <h2 class="text-3xl font-bold mb-8 border-b-2 border-yellow-500 pb-2 inline-block">資助計畫</h2>
+        <div id="funding-container" class="space-y-8 text-center text-gray-500">
+            載入進度中...
+        </div>
+    </div>
+</section>
 
-                <div class="relative">
-                    <div class="flex justify-between mb-2 items-center">
-                        <span class="text-white font-bold">第二順位：膠內褲</span>
-                        <span class="text-yellow-500 font-medium text-sm italic">達成率 50%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
-                        <div class="bg-yellow-500 h-full w-[50%]"></div>
-                    </div>
-                </div>
+<script>
+    // 將下方的網址換成你從 Google Sheet 發布的 CSV 連結
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_gdrr0rc_FSwc3N2oKkZNxUK2yFWuuM34e7-7OQqWENuL9hHajV0AxAmE4VfUuUnNFrTZHjEPIRaw/pub?gid=682573704&single=true&output=csv';
 
-                <div class="relative">
-                    <div class="flex justify-between mb-2 items-center">
-                        <span class="text-white font-bold">第三順位：個人工作室隔音工程</span>
-                        <span class="text-gray-400 font-medium text-sm italic">達成率 0%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
-                        <div class="bg-blue-500 h-full w-[0%]"></div>
-                    </div>
-                </div>
+    async function loadFunding() {
+        try {
+            const response = await fetch(sheetUrl);
+            const data = await response.text();
+            const rows = data.split('\n').slice(1); // 略過第一行標題
+            
+            const container = document.getElementById('funding-container');
+            container.innerHTML = ''; // 清除載入中文字
 
-            </div>
+            rows.forEach(row => {
+                const [name, goal, current] = row.split(',');
+                if (!name) return;
+
+                const percent = Math.min(Math.round((parseFloat(current) / parseFloat(goal)) * 100), 100);
+                const isDone = percent >= 100;
+
+                container.innerHTML += `
+                    <div class="relative text-left">
+                        <div class="flex justify-between mb-2 items-center">
+                            <span class="text-white font-bold">${name}</span>
+                            <span class="${isDone ? 'text-green-400' : 'text-yellow-500'} font-medium text-sm italic">
+                                ${isDone ? '已達成' : '達成率 ' + percent + '%'}
+                            </span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
+                            <div class="h-full transition-all duration-1000 ${isDone ? 'bg-green-500' : 'bg-yellow-500'}" 
+                                 style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+        } catch (e) {
+            document.getElementById('funding-container').innerHTML = '進度讀取失敗，請重新整理。';
+        }
+    }
+    loadFunding();
+</script>
 
             <div class="mt-12 text-center">
                 <a href="https://myship.7-11.com.tw/cart/confirm/GM2406017259580" class="inline-block px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-black rounded-full transition transform hover:scale-105 shadow-xl">
