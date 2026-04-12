@@ -166,43 +166,49 @@
 <script>
     // 將下方的網址換成你從 Google Sheet 發布的 CSV 連結
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_gdrr0rc_FSwc3N2oKkZNxUK2yFWuuM34e7-7OQqWENuL9hHajV0AxAmE4VfUuUnNFrTZHjEPIRaw/pub?gid=682573704&single=true&output=csv';
-
-    async function loadFunding() {
+    async function updateFunding() {
         try {
-            const response = await fetch(sheetUrl);
-            const data = await response.text();
-            const rows = data.split('\n').slice(1); // 略過第一行標題
+            const response = await fetch(sheetCsvUrl);
+            const text = await response.text();
             
-            const container = document.getElementById('funding-container');
-            container.innerHTML = ''; // 清除載入中文字
+            // 解析 CSV (切割行與列)
+            const rows = text.split('\n').slice(1); // 略過第一行標題
+            const listContainer = document.getElementById('funding-list');
+            listContainer.innerHTML = ''; 
 
             rows.forEach(row => {
-                const [name, goal, current] = row.split(',');
-                if (!name) return;
+                const cols = row.split(',');
+                if (cols.length < 2) return;
 
-                const percent = Math.min(Math.round((parseFloat(current) / parseFloat(goal)) * 100), 100);
-                const isDone = percent >= 100;
+                const name = cols[0].trim();
+                // 處理百分比文字，只留下數字
+                let progress = parseInt(cols[1].replace('%', '').trim()) || 0;
+                if (progress > 100) progress = 100;
 
-                container.innerHTML += `
-                    <div class="relative text-left">
+                const isDone = progress >= 100;
+
+                listContainer.innerHTML += `
+                    <div class="relative">
                         <div class="flex justify-between mb-2 items-center">
                             <span class="text-white font-bold">${name}</span>
                             <span class="${isDone ? 'text-green-400' : 'text-yellow-500'} font-medium text-sm italic">
-                                ${isDone ? '已達成' : '達成率 ' + percent + '%'}
+                                ${isDone ? '已達成' : '達成率 ' + progress + '%'}
                             </span>
                         </div>
-                        <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
-                            <div class="h-full transition-all duration-1000 ${isDone ? 'bg-green-500' : 'bg-yellow-500'}" 
-                                 style="width: ${percent}%"></div>
+                        <div class="w-full bg-gray-700 h-3 rounded-full overflow-hidden border border-gray-600">
+                            <div class="h-full transition-all duration-[2000ms] ${isDone ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-yellow-500'}" 
+                                 style="width: ${progress}%"></div>
                         </div>
                     </div>
                 `;
             });
-        } catch (e) {
-            document.getElementById('funding-container').innerHTML = '進度讀取失敗，請重新整理。';
+        } catch (error) {
+            console.error('讀取失敗', error);
+            document.getElementById('funding-list').innerHTML = '<p class="text-red-400">連線失敗，請檢查網路</p>';
         }
     }
-    loadFunding();
+
+    updateFunding();
 </script>
 
             <div class="mt-12 text-center">
