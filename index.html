@@ -8,21 +8,33 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
-        body { font-family: 'Noto Sans TC', sans-serif; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        /* 隱藏捲軸但保持功能 */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
-  <!-- Google tag (gtag.js) GOOGLE Analytics 網頁瀏覽數監測 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0KBXV39LT"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-G0KBXV39LT');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-G0KBXV39LT');
     </script>
     <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 </head>
-  
+
 <body class="bg-gray-900 text-white selection:bg-blue-500 selection:text-white">
+
     <div id="age-gate" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 px-4">
         <div class="max-w-md w-full bg-gray-900 border-2 border-red-600 p-8 rounded-3xl text-center shadow-[0_0_50px_rgba(220,38,38,0.3)]">
             <div class="text-6xl mb-4">🔞</div>
@@ -31,7 +43,6 @@
                 本網站部分內容涉及成人題材，僅限年滿 <span class="text-red-500 font-bold">18 歲</span>以上人士瀏覽。<br>
                 您是否已年滿 18 歲且同意進入？
             </p>
-            
             <div class="flex flex-col gap-4">
                 <button onclick="acceptAge()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-full transition transform hover:scale-105">
                     是的，我已滿 18 歲
@@ -40,61 +51,31 @@
                     未滿 18 歲或不同意，請點此離開
                 </a>
             </div>
-            
             <p class="mt-6 text-[10px] text-gray-600 uppercase tracking-widest">Warning: Adult Content Inside</p>
         </div>
     </div>
-    
-    <script>
-        // 檢查瀏覽器是否已經記錄過「已滿18歲」
-        window.onload = function() {
-            if (localStorage.getItem('isAdult') === 'true') {
-                document.getElementById('age-gate').classList.add('hidden');
-            }
-        };
-    
-        // 當使用者點擊「已滿 18 歲」
-        function acceptAge() {
-            localStorage.setItem('isAdult', 'true'); // 在瀏覽器留下紀錄
-            document.getElementById('age-gate').classList.add('hidden'); // 隱藏視窗
-        }
-    </script>
-    <!-- Hero / 名片區 -->
+
     <section class="flex items-center justify-center min-h-screen">
         <div class="max-w-md w-full p-8 bg-gray-800 rounded-3xl shadow-2xl text-center border border-gray-700 mx-4 transition hover:border-blue-500/50">
-            <img src="https://unavatar.io/twitter/lean_28" alt="Avatar"
-                 class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-500 shadow-lg object-cover">
-
+            <img src="https://unavatar.io/twitter/lean_28" alt="Avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-500 shadow-lg object-cover">
             <h1 class="text-3xl font-bold mb-1">阿斯莫德</h1>
             <p class="text-gray-400 mb-6 text-sm font-medium">@lean_28 · 18+ 內容創作者</p>
-
             <div class="space-y-3">
-                <a href="https://x.com/lean_28" target="_blank"
-                   class="block w-full py-3 bg-[#1DA1F2] hover:bg-[#1a8cd8] rounded-xl font-bold transition hover:scale-[1.02]">
-                   追蹤 X (Twitter)
+                <a href="https://x.com/lean_28" target="_blank" class="block w-full py-3 bg-[#1DA1F2] hover:bg-[#1a8cd8] rounded-xl font-bold transition hover:scale-[1.02]">
+                    追蹤 X (Twitter)
                 </a>
-
-                <a href="https://www.instagram.com/lean4.2.8" target="_blank"
-                   class="block w-full py-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 rounded-xl font-bold transition hover:scale-[1.02]">
-                   追蹤 Instagram
+                <a href="https://www.instagram.com/lean4.2.8" target="_blank" class="block w-full py-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-90 rounded-xl font-bold transition hover:scale-[1.02]">
+                    追蹤 Instagram
                 </a>
-
                 <div class="flex gap-3">
-                    <a href="#about" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition">
-                       關於我
-                    </a>
-                    <a href="#faq" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition">
-                       常見問題
-                    </a>
-                    <a href="#faq" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition">
-                        資助計畫
-                    </a>
+                    <a href="#about" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition text-sm">關於我</a>
+                    <a href="#blog" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition text-sm">內容專區</a>
+                    <a href="#funding" class="flex-1 py-3 bg-gray-700 hover:bg-gray-600 rounded-xl font-semibold transition text-sm">資助計畫</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 關於我 -->
     <section id="about" class="py-20 bg-gray-900 flex justify-center">
         <div class="max-w-2xl w-full px-6">
             <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-500 pb-2 inline-block">關於我 / About</h2>
@@ -105,30 +86,19 @@
         </div>
     </section>
 
-    <!-- 個人癖好 -->
     <section id="preferences" class="py-20 bg-gray-800 flex justify-center">
         <div class="max-w-2xl w-full px-6">
-            <h2 class="text-3xl font-bold mb-8 border-b-2 border-red-500 pb-2 inline-block">
-                個人癖好 / Preferences
-            </h2>
-
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-red-500 pb-2 inline-block">個人癖好 / Preferences</h2>
             <div class="space-y-4">
                 <div class="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:border-red-500/50 transition">
-                    <h3 class="text-xl font-bold text-red-400 mb-5 flex items-center gap-2">
-                        <span>🔥</span> 喜好玩法
-                    </h3>
+                    <h3 class="text-xl font-bold text-red-400 mb-5 flex items-center gap-2"><span>🔥</span> 喜好玩法</h3>
                     <div class="flex flex-wrap gap-3">
                         <span class="bg-red-900/30 text-red-400 px-4 py-1.5 rounded-full text-sm border border-red-500/20 hover:bg-red-500 hover:text-white transition cursor-default">癡漢</span>
                         <span class="bg-red-900/30 text-red-400 px-4 py-1.5 rounded-full text-sm border border-red-500/20 hover:bg-red-500 hover:text-white transition cursor-default">羞辱</span>
-                        <!-- <span class="bg-red-900/30 text-red-400 px-4 py-1.5 rounded-full text-sm border border-red-500/20 hover:bg-red-500 hover:text-white transition cursor-default">很有趣的玩法</span> -->
-                        <!-- <span class="bg-red-900/30 text-red-400 px-4 py-1.5 rounded-full text-sm border border-red-500/20 hover:bg-red-500 hover:text-white transition cursor-default">自定義項目</span> -->
                     </div>
                 </div>
-
                 <div class="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:border-red-500/50 transition">
-                    <h3 class="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
-                        <span>✨</span> 特殊癖好
-                    </h3>
+                    <h3 class="text-xl font-bold text-red-400 mb-4 flex items-center gap-2"><span>✨</span> 特殊癖好</h3>
                     <ul class="space-y-2 text-gray-300">
                         <li class="flex items-center gap-3"><span class="w-2 h-2 bg-red-500 rounded-full shrink-0"></span> 馬靴</li>
                         <li class="flex items-center gap-3"><span class="w-2 h-2 bg-red-500 rounded-full shrink-0"></span> 膠衣</li>
@@ -136,115 +106,51 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="mt-8 p-5 bg-red-900/10 border border-red-900/30 rounded-xl text-center">
-                <p class="text-red-300 text-sm italic">
-                    ※ 以上僅供參考，想合作或聊天的話先私訊我就對了。
-                </p>
-            </div>
         </div>
     </section>
-    <!-- 最新文章 -->
-    <section id="blog" class="py-20 bg-gray-900 flex justify-center">
-    <div class="max-w-4xl w-full px-6">
-        <h2 class="text-3xl font-bold mb-6 border-b-2 border-red-500 pb-2 inline-block text-white">內容專區</h2>
-        
-        <div class="flex overflow-x-auto space-x-4 mb-6 pb-4 scrollbar-hide" id="post-menu">
-            </div>
 
-        <div class="bg-gray-100 p-8 md:p-12 rounded-3xl shadow-2xl text-gray-800 min-h-[400px]">
-            <zero-md id="post-viewer" src="posts/article1.md">
-                <template>
-                    <style>
-                        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: #111; }
-                        p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.1rem; }
-                        img { max-width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; }
-                    </style>
-                </template>
-            </zero-md>
+    <section id="blog" class="py-20 bg-gray-900 flex justify-center text-center">
+        <div class="max-w-4xl w-full px-6">
+            <h2 class="text-3xl font-bold mb-10 border-b-2 border-red-500 pb-2 inline-block text-white">內容專區 / Articles</h2>
+            
+            <div class="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide justify-start md:justify-center" id="post-menu">
+                </div>
+            
+            <p class="text-gray-500 text-sm mt-4 italic">↑ 點擊標題開啟文章內容</p>
+        </div>
+    </section>
+
+    <div id="article-modal" class="fixed inset-0 z-[10000] hidden flex items-center justify-center p-4 md:p-10">
+        <div onclick="closeArticle()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div class="relative bg-gray-50 w-full max-w-4xl h-full max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b bg-white">
+                <span class="text-gray-400 text-sm ml-4">正在閱讀文章...</span>
+                <button onclick="closeArticle()" class="text-gray-500 hover:text-red-500 text-xl font-bold px-4 py-2 transition">✕ 關閉</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 md:p-12 text-gray-800 bg-white">
+                <zero-md id="modal-viewer">
+                    <template>
+                        <style>
+                            h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem; color: #111; line-height: 1.2; }
+                            h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #333; }
+                            p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.125rem; color: #374151; }
+                            img { max-width: 100%; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+                            blockquote { border-left: 4px solid #ef4444; padding-left: 1rem; color: #6b7280; font-style: italic; margin: 1.5rem 0; }
+                            ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.2rem; }
+                        </style>
+                    </template>
+                </zero-md>
+            </div>
         </div>
     </div>
-</section>
 
-<script>
-    // 【你以後只需要改這裡】
-    // file: 對應 GitHub 上的檔名, title: 顯示在按鈕上的文字
-    const postList = [
-        { file: 'article1.md', title: '最新公告' },
-        { file: 'article2.md', title: '創作心得' },
-        { file: 'article3.md', title: '推特限定' },
-        { file: 'faq_extra.md', title: '補充說明' }
-    ];
-
-    const menuContainer = document.getElementById('post-menu');
-    const viewer = document.getElementById('post-viewer');
-
-    // 自動產生按鈕的功能
-    function generateMenu() {
-        menuContainer.innerHTML = ''; // 清空容器
-        postList.forEach((post, index) => {
-            const btn = document.createElement('button');
-            btn.innerText = post.title;
-            
-            // 設定樣式
-            btn.className = 'flex-shrink-0 px-6 py-2 rounded-full border transition whitespace-nowrap ';
-            if (index === 0) {
-                btn.classList.add('border-red-500', 'text-white', 'active-btn');
-            } else {
-                btn.classList.add('border-gray-600', 'text-gray-400');
-            }
-
-            // 設定點擊事件
-            btn.onclick = function() {
-                viewer.setAttribute('src', 'posts/' + post.file);
-                
-                // 切換所有按鈕顏色
-                document.querySelectorAll('#post-menu button').forEach(b => {
-                    b.classList.remove('border-red-500', 'text-white');
-                    b.classList.add('border-gray-600', 'text-gray-400');
-                });
-                btn.classList.remove('border-gray-600', 'text-gray-400');
-                btn.classList.add('border-red-500', 'text-white');
-            };
-
-            menuContainer.appendChild(btn);
-        });
-    }
-
-    // 執行產生選單
-    generateMenu();
-</script>
-
-    <!-- FAQ -->
     <section id="faq" class="py-20 bg-gray-900 flex justify-center">
         <div class="max-w-2xl w-full px-6">
             <h2 class="text-3xl font-bold mb-8 border-b-2 border-purple-500 pb-2 inline-block">常見問題 / FAQ</h2>
-
             <div class="space-y-4">
                 <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
                     <h3 class="font-bold text-blue-400 mb-2 text-lg">Q1：幹男生跟幹女生有差嗎？</h3>
-                    <p class="text-gray-300">因為本人是雙性戀，這問題超常被問的——但說實話我也沒辦法給你答案，畢竟跟這兩種性別之間都隔了 4 年多，當時的感受早就不記得了。所以這題就先跳過吧！</p>
-                </div>
-                <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
-                    <h3 class="font-bold text-blue-400 mb-2 text-lg">Q2：你幾歲？</h3>
-                    <p class="text-gray-300">統一回答「20 ～ 30 歲」之間。真的不太明白一直問年齡要幹嘛，如果這個會變成你的篩選條件，那可以直接跳過我了。</p>
-                </div>
-                <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
-                    <h3 class="font-bold text-blue-400 mb-2 text-lg">Q3：你是 1/0？S/M？</h3>
-                    <p class="text-gray-300">看心情，也看對方給我的感覺。</p>
-                </div>
-                <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
-                    <h3 class="font-bold text-blue-400 mb-2 text-lg">Q4：你住哪？</h3>
-                    <p class="text-gray-300">桃園跟台中不固定，哪邊都有可能出沒。</p>
-                </div>
-                <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
-                    <h3 class="font-bold text-blue-400 mb-2 text-lg">Q5：性經驗有幾個？</h3>
-                    <p class="text-gray-300 leading-relaxed">男性：6.5 人<br>女性：2 個，都是交往過的女友<br>
-                    <span class="text-gray-500 text-sm">※ 這邊只算有插入或被插入的，純口或玩ㄐㄐ之類的不算在內</span></p>
-                </div>
-                <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
-                    <h3 class="font-bold text-blue-400 mb-2 text-lg">Q6：平常都在幹嘛？興趣是？</h3>
-                    <p class="text-gray-300">最喜歡睡覺，但最近作息超亂，沒事就直接睡爛。興趣的話——研究瑟瑟的東西、研究交易，總之就是這裡看看那裡看看。</p>
+                    <p class="text-gray-300">說實話我也沒辦法給你答案，畢竟隔了 4 年多，感受早就不記得了。</p>
                 </div>
                 <div class="p-5 bg-gray-800 rounded-xl border border-gray-700">
                     <h3 class="font-bold text-blue-400 mb-2 text-lg">Q7：ㄐㄐ多大？</h3>
@@ -254,63 +160,87 @@
         </div>
     </section>
 
-    <!-- 資助計畫 -->
     <section id="funding" class="py-20 bg-gray-800 flex justify-center">
         <div class="max-w-2xl w-full px-6">
-            <h2 class="text-3xl font-bold mb-4 border-b-2 border-yellow-500 pb-2 inline-block">
-                粉絲資助計畫 / Funding
-            </h2>
-
-            <div class="bg-yellow-900/20 border border-yellow-600/30 p-6 rounded-2xl mb-10">
-                <p class="text-yellow-200 leading-relaxed text-sm md:text-base">
-                    感謝每一位支持阿斯莫德的朋友！<br>
-                    <span class="font-bold text-white">※ 資金分配原則：</span>
-                    若沒有特別指定用途，資金會按照
-                    <span class="text-white font-bold text-lg">70%</span> 投入創作計畫、
-                    <span class="text-white font-bold text-lg">30%</span> 作為餐費補貼來分配。
-                </p>
+            <h2 class="text-3xl font-bold mb-4 border-b-2 border-yellow-500 pb-2 inline-block">粉絲資助計畫 / Funding</h2>
+            <div class="bg-yellow-900/20 border border-yellow-600/30 p-6 rounded-2xl mb-10 text-yellow-200">
+                <p class="text-sm md:text-base">感謝每一位支持阿斯莫德的朋友！資金分配：70% 投入創作、30% 作為餐費補貼。</p>
             </div>
-
-            <div id="funding-list" class="space-y-6 text-center text-gray-500">
-                載入進度中...
-            </div>
-
+            <div id="funding-list" class="space-y-6 text-center text-gray-500">載入進度中...</div>
             <div class="mt-12 text-center">
-                <a href="https://myship.7-11.com.tw/cart/confirm/GM2406017259580"
-                   class="inline-block px-10 py-4 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-black rounded-full transition hover:scale-105 shadow-xl">
-                   ☕ 支持我的創作計畫
-                </a>
+                <a href="https://myship.7-11.com.tw/cart/confirm/GM2406017259580" class="inline-block px-10 py-4 bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-black rounded-full transition hover:scale-105 shadow-xl">☕ 支持我的創作計畫</a>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 text-center text-sm text-gray-600 bg-gray-900">
+    <footer class="py-16 text-center text-sm text-gray-600 bg-gray-900 border-t border-gray-800">
         <p class="mb-4">© 2026 Asmodeus. Designed by Yourself.</p>
         <a href="#" class="text-gray-500 hover:text-white transition bg-gray-800 px-4 py-2 rounded-full border border-gray-700">↑ 回到頂部</a>
     </footer>
 
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_gdrr0rc_FSwc3N2oKkZNxUK2yFWuuM34e7-7OQqWENuL9hHajV0AxAmE4VfUuUnNFrTZHjEPIRaw/pub?gid=682573704&single=true&output=csv';
+        // 1. 18禁門神邏輯
+        window.onload = function() {
+            if (localStorage.getItem('isAdult') === 'true') {
+                document.getElementById('age-gate').classList.add('hidden');
+            }
+        };
+        function acceptAge() {
+            localStorage.setItem('isAdult', 'true');
+            document.getElementById('age-gate').classList.add('hidden');
+        }
 
+        // 2. 自動選單與彈窗邏輯
+        const postList = [
+            { file: 'article1.md', title: '最新公告' },
+            { file: 'article2.md', title: '創作心得' },
+            { file: 'article3.md', title: '推特限定' },
+            { file: 'faq_extra.md', title: '補充說明' }
+        ];
+
+        const menuContainer = document.getElementById('post-menu');
+        const modal = document.getElementById('article-modal');
+        const modalViewer = document.getElementById('modal-viewer');
+
+        function generateMenu() {
+            menuContainer.innerHTML = '';
+            postList.forEach((post) => {
+                const btn = document.createElement('button');
+                btn.innerText = post.title;
+                btn.className = 'flex-shrink-0 px-8 py-3 rounded-full border border-gray-600 text-gray-400 hover:border-red-500 hover:text-white transition whitespace-nowrap font-bold';
+                
+                btn.onclick = function() {
+                    modalViewer.setAttribute('src', 'posts/' + post.file);
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // 背景禁滾動
+                };
+                menuContainer.appendChild(btn);
+            });
+        }
+
+        function closeArticle() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // 恢復背景滾動
+        }
+
+        generateMenu();
+
+        // 3. 資助計畫讀取
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_gdrr0rc_FSwc3N2oKkZNxUK2yFWuuM34e7-7OQqWENuL9hHajV0AxAmE4VfUuUnNFrTZHjEPIRaw/pub?gid=682573704&single=true&output=csv';
         async function updateFunding() {
             try {
                 const response = await fetch(sheetUrl);
                 const text = await response.text();
-
-                const rows = text.split('\n').slice(1); // 跳過第一行標題
+                const rows = text.split('\n').slice(1);
                 const listContainer = document.getElementById('funding-list');
                 listContainer.innerHTML = '';
-
                 rows.forEach(row => {
                     const cols = row.split(',');
                     if (cols.length < 2) return;
-
                     const name = cols[0].trim();
                     let progress = parseInt(cols[1].replace('%', '').trim()) || 0;
                     if (progress > 100) progress = 100;
-
                     const isDone = progress >= 100;
-
                     listContainer.innerHTML += `
                         <div class="relative">
                             <div class="flex justify-between mb-2 items-center">
@@ -320,22 +250,14 @@
                                 </span>
                             </div>
                             <div class="w-full bg-gray-700 h-3 rounded-full overflow-hidden border border-gray-600">
-                                <div class="h-full transition-all duration-[2000ms] ${isDone ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-yellow-500'}"
-                                     style="width: ${progress}%"></div>
+                                <div class="h-full transition-all duration-[2000ms] ${isDone ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)]' : 'bg-yellow-500'}" style="width: ${progress}%"></div>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
-
-                if (listContainer.innerHTML === '') {
-                    listContainer.innerHTML = '<p class="text-gray-500">目前還沒有資助項目</p>';
-                }
             } catch (error) {
                 console.error('讀取失敗', error);
-                document.getElementById('funding-list').innerHTML = '<p class="text-red-400">連線失敗，請稍後再試</p>';
             }
         }
-
         updateFunding();
     </script>
 
