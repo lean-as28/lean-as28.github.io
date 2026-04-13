@@ -55,18 +55,17 @@
             <p class="mt-6 text-[10px] text-gray-600 uppercase tracking-widest">Warning: Adult Content Inside</p>
         </div> 
         <script>
-        // 檢查瀏覽器是否已經記錄過「已滿18歲」
-        window.onload = function() {
-            if (localStorage.getItem('isAdult') === 'true') {
-                document.getElementById('age-gate').classList.add('hidden');
+            // 網頁一讀完，就確保門是開著的
+            window.addEventListener('load', function() {
+                const gate = document.getElementById('age-gate');
+                gate.classList.remove('hidden'); // 強制移除隱藏類標籤
+                gate.style.display = 'flex';     // 強制顯示
+            });
+        
+            function acceptAge() {
+                document.getElementById('age-gate').style.display = 'none';
+                window.scrollTo(0, 0);
             }
-        };
-    
-        // 當使用者點擊「已滿 18 歲」
-        function acceptAge() {
-            localStorage.setItem('isAdult', 'true'); // 在瀏覽器留下紀錄
-            document.getElementById('age-gate').classList.add('hidden'); // 隱藏視窗
-        }
         </script>
     </div>
 
