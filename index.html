@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
-<!-- Google tag (gtag.js) GOOGLE Analytics 網頁瀏覽數監測 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G0KBXV39LT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-G0KBXV39LT');
-</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +10,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', sans-serif; }
     </style>
+  <!-- Google tag (gtag.js) GOOGLE Analytics 網頁瀏覽數監測 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0KBXV39LT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G0KBXV39LT');
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
 </head>
   
 <body class="bg-gray-900 text-white selection:bg-blue-500 selection:text-white">
@@ -142,6 +144,76 @@
             </div>
         </div>
     </section>
+    <!-- 最新文章 -->
+    <section id="blog" class="py-20 bg-gray-900 flex justify-center">
+    <div class="max-w-4xl w-full px-6">
+        <h2 class="text-3xl font-bold mb-6 border-b-2 border-red-500 pb-2 inline-block text-white">內容專區</h2>
+        
+        <div class="flex overflow-x-auto space-x-4 mb-6 pb-4 scrollbar-hide" id="post-menu">
+            </div>
+
+        <div class="bg-gray-100 p-8 md:p-12 rounded-3xl shadow-2xl text-gray-800 min-h-[400px]">
+            <zero-md id="post-viewer" src="posts/article1.md">
+                <template>
+                    <style>
+                        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: #111; }
+                        p { line-height: 1.8; margin-bottom: 1.2rem; font-size: 1.1rem; }
+                        img { max-width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; }
+                    </style>
+                </template>
+            </zero-md>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 【你以後只需要改這裡】
+    // file: 對應 GitHub 上的檔名, title: 顯示在按鈕上的文字
+    const postList = [
+        { file: 'article1.md', title: '最新公告' },
+        { file: 'article2.md', title: '創作心得' },
+        { file: 'article3.md', title: '推特限定' },
+        { file: 'faq_extra.md', title: '補充說明' }
+    ];
+
+    const menuContainer = document.getElementById('post-menu');
+    const viewer = document.getElementById('post-viewer');
+
+    // 自動產生按鈕的功能
+    function generateMenu() {
+        menuContainer.innerHTML = ''; // 清空容器
+        postList.forEach((post, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = post.title;
+            
+            // 設定樣式
+            btn.className = 'flex-shrink-0 px-6 py-2 rounded-full border transition whitespace-nowrap ';
+            if (index === 0) {
+                btn.classList.add('border-red-500', 'text-white', 'active-btn');
+            } else {
+                btn.classList.add('border-gray-600', 'text-gray-400');
+            }
+
+            // 設定點擊事件
+            btn.onclick = function() {
+                viewer.setAttribute('src', 'posts/' + post.file);
+                
+                // 切換所有按鈕顏色
+                document.querySelectorAll('#post-menu button').forEach(b => {
+                    b.classList.remove('border-red-500', 'text-white');
+                    b.classList.add('border-gray-600', 'text-gray-400');
+                });
+                btn.classList.remove('border-gray-600', 'text-gray-400');
+                btn.classList.add('border-red-500', 'text-white');
+            };
+
+            menuContainer.appendChild(btn);
+        });
+    }
+
+    // 執行產生選單
+    generateMenu();
+</script>
 
     <!-- FAQ -->
     <section id="faq" class="py-20 bg-gray-900 flex justify-center">
