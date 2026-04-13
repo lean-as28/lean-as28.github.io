@@ -19,8 +19,44 @@
         body { font-family: 'Noto Sans TC', sans-serif; }
     </style>
 </head>
+  
 <body class="bg-gray-900 text-white selection:bg-blue-500 selection:text-white">
-
+    <div id="age-gate" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 px-4">
+        <div class="max-w-md w-full bg-gray-900 border-2 border-red-600 p-8 rounded-3xl text-center shadow-[0_0_50px_rgba(220,38,38,0.3)]">
+            <div class="text-6xl mb-4">🔞</div>
+            <h2 class="text-2xl font-bold text-white mb-4">警告：內容包含成人限定資訊</h2>
+            <p class="text-gray-400 mb-8 leading-relaxed">
+                本網站部分內容涉及成人題材，僅限年滿 <span class="text-red-500 font-bold">18 歲</span>以上人士瀏覽。<br>
+                您是否已年滿 18 歲且同意進入？
+            </p>
+            
+            <div class="flex flex-col gap-4">
+                <button onclick="acceptAge()" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-full transition transform hover:scale-105">
+                    是的，我已滿 18 歲
+                </button>
+                <a href="https://www.google.com" class="text-gray-500 hover:text-gray-300 text-sm underline transition">
+                    未滿 18 歲或不同意，請點此離開
+                </a>
+            </div>
+            
+            <p class="mt-6 text-[10px] text-gray-600 uppercase tracking-widest">Warning: Adult Content Inside</p>
+        </div>
+    </div>
+    
+    <script>
+        // 檢查瀏覽器是否已經記錄過「已滿18歲」
+        window.onload = function() {
+            if (localStorage.getItem('isAdult') === 'true') {
+                document.getElementById('age-gate').classList.add('hidden');
+            }
+        };
+    
+        // 當使用者點擊「已滿 18 歲」
+        function acceptAge() {
+            localStorage.setItem('isAdult', 'true'); // 在瀏覽器留下紀錄
+            document.getElementById('age-gate').classList.add('hidden'); // 隱藏視窗
+        }
+    </script>
     <!-- Hero / 名片區 -->
     <section class="flex items-center justify-center min-h-screen">
         <div class="max-w-md w-full p-8 bg-gray-800 rounded-3xl shadow-2xl text-center border border-gray-700 mx-4 transition hover:border-blue-500/50">
